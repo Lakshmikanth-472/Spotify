@@ -1,3 +1,4 @@
+import 'package:clone/pages/Homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -14,51 +15,88 @@ class _RootAppState extends State<RootApp> {
   int activeTab=0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.black,bottomNavigationBar:getFooter(),
+    return Scaffold(bottomNavigationBar:getFooter(),
     body: getBody(),);
   }
   Widget getBody(){
     return IndexedStack(
       index: activeTab,
       children: [
-        Center (child:Text("Home",Style:TextStyle(
+        Homepage(),
+        Center (child:Text("Home",style:TextStyle(
           fontSize: 20,
-          color: Colors.white,
-          fontWeight: FontWeight.bold))],
+          color: Colors.black,
+          fontWeight: FontWeight.bold))
+    ),
+    Center (child:Text("Library",style:TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.bold))
+    ),
+    Center (child:Text("Search",style:TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.bold))
+    ),
+    Center (child:Text("Settings",style:TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.bold))
+    ),
+    ],
     );
   }
   Widget getFooter(){
-    List items =[
-    Feather.home,
-       Feather.book,
-      Feather.search,
-       Feather.settings
-    ];
-    return Container(height: 80,decoration: BoxDecoration(color: Colors.black),
-    child: Padding(
-      padding: const EdgeInsets.only(left: 20,right: 20),
-      child: Row
-      (
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(items.length, (index){
-        return IconButton(
-          icon: Icon(
-          items[index],
-            color:activeTab==index ?Colors.black :Colors.white,),
-        onPressed: (){
-          setState(() {
-            activeTab=index;
-          });
-        });
-      } 
-    
+   return Scaffold(
+ backgroundColor: Colors.black,
+  bottomNavigationBar: BottomNavigationBar(
+  
+    items: const <BottomNavigationBarItem>[
+
+      BottomNavigationBarItem(
+         backgroundColor: Colors.black,
+       icon: Icon(Icons.home, color: Colors.white,),
+        label: 'Home',
       
-      
-      )
       ),
-    ),);
+      // BottomNavigationBarItem(
+      //   icon: Icon(Icons.camera),
+      //   label: 'Camera',
+      
+    BottomNavigationBarItem(
+       backgroundColor: Colors.black,
+            icon: Icon(Icons.book,color: Colors.white,),
+            label: "Book",
+   
+          ),
+          
+      
+      // BottomNavigationBarItem(
+      //   icon: Icon(Icons.chat),
+      //   label: 'Chats',
+      BottomNavigationBarItem(
+         backgroundColor: Colors.black,
+            icon: Icon(Icons.search,color: Colors.white,),
+            label: "Search",
+      ),
+      BottomNavigationBarItem(
+         backgroundColor: Colors.black,
+            icon: Icon(Icons.settings,color: Colors.white,),
+            label: "Setttings",
+      ),
+    ],
+    
+  ),
+ 
+);
+ 
+ 
   }
+ }
+      
+
+  
+  
   
   
 
